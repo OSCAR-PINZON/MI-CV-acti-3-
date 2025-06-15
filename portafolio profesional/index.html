@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Currículum de Oscar Steven Pinzón</title>
+  <style>
+    /* (todo el CSS igual, omitido para brevedad, solo la parte relevante abajo) */
+
+    body, ul, h1, h2, h3, p {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ecf0f1;
+      color: #2c3e50;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .cv-container {
+      max-width: 1100px;
+      background: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 30px;
+      position: relative;
+      transition: margin-left 0.3s ease;
+    }
+
+    .sidebar-photo {
+      width: 280px;
+      background: #27ae60;
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 700;
+      gap: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .foto-perfil {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .correo-institucional {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 20px;
+      user-select: text;
+    }
+
+    .cv-main {
+      flex: 1;
+    }
+
+    h1, h2, h3 {
+      color: #27ae60;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 1.7rem;
+      margin-top: 15px;
+    }
+
+    .hidden-section {
+      display: none;
+    }
+
+    .active-section {
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 18px;
+    }
+
+    .skills, .debilidades-list, .comida-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .skills li, .debilidades-list li, .comida-list li {
+      background-color: #2ecc71;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+      max-width: 300px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid #27ae60;
+    }
+
+    .skills li:hover, .debilidades-list li:hover, .comida-list li:hover {
+      background-color: #27ae60;
+      cursor: default;
+    }
+
+    .icono-section {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .sidebar-photo img.redes {
+      width: 50px;
+      margin-bottom: 8px;
+    }
+
+    /* Menú hamburguesa */
+
+    #menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      font-size: 34px;
+      cursor: pointer;
+      color: #27ae60;
+      z-index: 1001;
+      user-select: none;
+      background: white;
+      border-radius: 5px;
+      padding: 4px 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      width: 230px;
+      background-color: #27ae60;
+      padding-top: 70px;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      border-radius: 0 8px 8px 0;
+    }
+
+    #menu-toggle:checked ~ .sidebar {
+      left: 0;
+    }
+
+    #menu-toggle:checked ~ .cv-container {
+      margin-left: 230px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 20px;
+      display: block;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #2ecc71;
+    }
+
+    @media (max-width: 768px) {
+      .cv-container {
+        flex-direction: column;
+        margin-left: 0 !important;
+      }
+      .sidebar-photo {
+        width: 100%;
+        flex-direction: row;
+        padding: 15px;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .foto-perfil {
+        width: 100px;
+        height: 100px;
+      }
+      .info-contacto p {
+        font-size: 16px;
+      }
+      .sidebar ul li {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+  <nav class="sidebar">
+    <ul>
+      <li><a href="#" data-section="perfil">Perfil</a></li>
+      <li><a href="#" data-section="habilidades">Habilidades</a></li>
+      <li><a href="#" data-section="debilidades">Debilidades</a></li>
+      <li><a href="#" data-section="comida">Comida favorita</a></li>
+    </ul>
+  </nav>
+
+  <div class="cv-container">
+
+    <aside class="sidebar-photo">
+      <img src="yo.1.jpg" alt="Foto de Oscar Pinzón" class="foto-perfil" />
+      <img src="redes.1.jpg" alt="Redes Sociales" class="redes" />
+      <p class="correo-institucional">opinzon@utm.edu.ec</p>
+      <div class="info-contacto">
+        <p><strong>Oscar Steven Pinzón</strong></p>
+        <p>26 años</p>
+        <p>Teléfono: 0979 92 65 52</p>
+      </div>
+    </aside>
+
+    <main class="cv-main">
+
+      <section id="perfil" class="active-section" tabindex="0">
+        <h2>Perfil</h2>
+        <p>Soy un profesional responsable, con experiencia en atención al cliente y seguridad. Actualmente estudio Ingeniería en Sistemas y me especializo en tecnología y soporte técnico.</p>
+        <h3>Carrera</h3>
+        <ul>
+          <li>Estudiante 5to semestre Ingeniería en Sistemas</li>
+          <li>Experiencia en Call Center - Viajes Felices</li>
+          <li>Guardia de Seguridad en empresa privada</li>
+          <li>Vendedor técnico en tienda de tecnología</li>
+        </ul>
+
+        <h3>Experiencia Laboral</h3>
+        <ul>
+          <li>
+            <strong>Viajes Felices</strong> – Atención al cliente (Call Center)<br />
+            <em>Período:</em> 2022 <br />
+            Atención telefónica, soporte y orientación a clientes.
+          </li>
+          <li>
+            <strong>Guardia de Seguridad</strong><br />
+            <em>Período:</em> 2023<br />
+            Responsabilidades en vigilancia y control de accesos.
+          </li>
+          <li>
+            <strong>Tienda de Tecnología</strong> – Asistente de ventas<br />
+            <em>Período:</em> 2024 - Actualidad<br />
+            Atención al cliente y manejo de inventarios.
+          </li>
+        </ul>
+
+        <h3>Educación</h3>
+        <ul>
+          <li>
+            <img src="escuela.1.jpg" alt="Escuela Nicolás Guillén" style="width: 90%; max-width: 260px; border-radius:10px; margin-bottom:8px;" />
+            <p><strong>Nicolás Guillén</strong></p>
+          </li>
+          <li>
+            <img src="colegio.1.jpg" alt="Colegio Gonzalo Escudero" style="width: 90%; max-width: 260px; border-radius:10px; margin-bottom:8px;" />
+            <p><strong>Colegio Gonzalo Escudero</strong></p>
+          </li>
+          <li>
+            <img src="universidad.1.jpg" alt="Universidad Técnica de Manabí" style="width: 90%; max-width: 260px; border-radius:10px; margin-bottom:8px;" />
+            <p><strong>Universidad UTM</strong></p>
+          </li>
+        </ul>
+
+        <h3>Contacto</h3>
+        <p><strong>Teléfono:</strong> 0979 92 65 52</p>
+        <p><strong>Correo institucional:</strong> <span class="correo-institucional">opinzon@utm.edu.ec</span></p>
+      </section>
+
+      <section id="habilidades" class="hidden-section" tabindex="0">
+        <h2>Habilidades</h2>
+        <ul class="skills">
+          <li><img src="rapido.1.jpg" alt="Rápido" class="icono-section" /> Manejo con clientes</li>
+          <li>Atención al cliente</li>
+          <li>Habilidades técnicas en computación</li>
+          <li>Rapidez para gestionar problemas</li>
+          <li>Trabajo en equipo</li>
+          <li>Resolución de conflictos</li>
+          <li><strong>Puntualidad</strong><br /><small>Siempre cumplo con mis horarios y responsabilidades.</small></li>
+        </ul>
+      </section>
+
+      <section id="debilidades" class="hidden-section" tabindex="0">
+        <h2>Debilidades</h2>
+        <ul class="debilidades-list">
+          <li><img src="debilidad.1.jpg" alt="Debilidad" class="icono-section" /> A veces soy muy perfeccionista</li>
+          <li>Me cuesta delegar tareas</li>
+          <li>Impaciencia en algunos procesos largos</li>
+        </ul>
+      </section>
+
+      <section id="comida" class="hidden-section" tabindex="0">
+        <h2>Comida Favorita</h2>
+        <ul class="comida-list">
+          <li><img src="encebollado.1.jpg" alt="Encebollado" class="icono-section" /> Me encanta la comida tradicional ecuatoriana, especialmente el ceviche y el encebollado.</li>
+        </ul>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    // Mostrar solo la sección seleccionada
+    const links = document.querySelectorAll('.sidebar a');
+    const sections = document.querySelectorAll('section');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        document.getElementById('menu-toggle').checked = false;
+
+        const target = link.dataset.section;
+
+        sections.forEach(sec => {
+          if(sec.id === target) {
+            sec.classList.add('active-section');
+            sec.classList.remove('hidden-section');
+            sec.focus();
+          } else {
+            sec.classList.add('hidden-section');
+            sec.classList.remove('active-section');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
